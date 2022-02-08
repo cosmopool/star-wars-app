@@ -1,4 +1,4 @@
-class Character {
+class CharacterEntity {
   late final String name;
   late final double height;
   late final double mass;
@@ -13,7 +13,7 @@ class Character {
   late final List<dynamic> species;
   late final String url;
 
-  Character(
+  CharacterEntity(
     this.name,
     this.height,
     this.mass,
@@ -30,7 +30,7 @@ class Character {
 
   // TODO: make it more readable
   // this constructor is sooo ugly
-  Character.fromMap(Map character) {
+  CharacterEntity.fromMap(Map character) {
     name = character['name'] as String;
     films = character['films'] as List<String>;
     url = character['url'] as String;
