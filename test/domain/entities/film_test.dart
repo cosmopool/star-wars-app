@@ -38,4 +38,11 @@ void main() {
 
     expect(film.characters.runtimeType, List<String>);
   });
+
+  test("Should return datetime relase", () {
+    final people = filmResponse["results"];
+    final film = Film.fromMap(people[0]);
+
+    expect(film.releaseDate, DateTime(1977, 05, 25));
+  });
 }
