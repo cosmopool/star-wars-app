@@ -1,6 +1,7 @@
+import 'entity.dart';
 import 'character_entity.dart';
 
-class FilmEntity {
+class FilmEntity implements Entity {
   late final String title;
   late final int episodeId;
   late final int id;

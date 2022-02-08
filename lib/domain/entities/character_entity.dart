@@ -1,4 +1,6 @@
-class CharacterEntity {
+import 'entity.dart';
+
+class CharacterEntity implements Entity {
   late final String name;
   late final double height;
   late final double mass;
