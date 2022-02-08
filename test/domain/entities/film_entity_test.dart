@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:star_wars_app/domain/entities/character_entity.dart';
 import 'package:star_wars_app/domain/entities/film_entity.dart';
 
 import '../../films_response.dart';
@@ -36,7 +37,7 @@ void main() {
     final people = filmResponse["results"];
     final film = FilmEntity.fromMap(people[0]);
 
-    expect(film.characters.runtimeType, List<String>);
+    expect(film.characters.runtimeType, List<CharacterEntity>);
   });
 
   test("Should return datetime relase", () {
