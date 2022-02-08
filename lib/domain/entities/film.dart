@@ -39,5 +39,18 @@ class Film {
   }
 
   List<Character> get characters => _characters;
+
+  // TODO: write better character list fetch
+  // film repository will fetch all characters from list
+  // and send here so we can display
+  bool setCharacterList(List<Character> charList) {
+    final listLen = charList.length;
+    final _listLen = charactersUrl.length;
+    if (_characters == [] && listLen == _listLen) {
+      _characters = charList;
+      return true;
+    } else {
+      return false;
+    }
   }
 }
