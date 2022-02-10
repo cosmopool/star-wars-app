@@ -1,17 +1,17 @@
-class Response {
+class ResponseEntity {
   late final bool error;
   late final String errMessage;
   late final List result;
 
-  Response(this.error, this.errMessage, this.result);
+  ResponseEntity(this.error, this.errMessage, this.result);
 
-  Response.onError(String message) {
+  ResponseEntity.onError(String message) {
     error = true;
     errMessage = message;
     result = [];
   }
 
-  Response.onSuccess(List responseResult) {
+  ResponseEntity.onSuccess(List responseResult) {
     error = false;
     errMessage = "No error.";
     result = responseResult;
