@@ -4,5 +4,5 @@ import 'package:star_wars_app/domain/entities/response_entity.dart';
 abstract class IFavoritesRespository {
   Future<ResponseEntity> add(Entity entity);
   Future<ResponseEntity> remove(Entity entity);
-  Future<ResponseEntity> fetchAll();
+  Future<ResponseEntity> fetch(String table);
 }

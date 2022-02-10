@@ -33,13 +33,10 @@ class FavoritesRepository implements IFavoritesRespository {
   }
 
   @override
-  Future<ResponseEntity> fetchAll() async {
+  Future<ResponseEntity> fetch(String table) async {
     try {
-      final favoriteCharacters = await _cache.fetch('characters');
-      final favoriteFilms = await _cache.fetch('films');
-      favoriteCharacters.addAll(favoriteFilms);
-
-      return ResponseEntity.onSuccess(favoriteCharacters);
+      final response = await _cache.fetch(table);
+      return ResponseEntity.onSuccess(response);
     } catch (e) {
       return ResponseEntity.onError("Não foi possível mostar os favoritos");
     }
