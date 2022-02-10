@@ -6,8 +6,8 @@ class ShowFavoritesUsecase {
 
   ShowFavoritesUsecase(this._repository);
 
-  List<Entity> call() {
-    final result = _repository.showAll();
-    return result;
+  Future<List<Entity>> call() async {
+    final response = await _repository.fetchAll();
+    return response.result.cast();
   }
 }
