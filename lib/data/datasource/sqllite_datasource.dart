@@ -1,5 +1,4 @@
 import 'package:sqflite/sqflite.dart';
-import 'package:star_wars_app/core/response.dart';
 import 'package:star_wars_app/infra/datasources/cache_datasource_interface.dart';
 
 class SqliteDatasource implements ICacheDatasource {
@@ -8,37 +7,21 @@ class SqliteDatasource implements ICacheDatasource {
   SqliteDatasource(this._database);
 
   @override
-  Future<Response> add(String table, Map entry) async {
-    try {
-      final result = await _database.insert(table, entry.cast());
-      return Response.onSuccess([result]);
-    } catch (e) {
-      return Response.onError("Error inserting entry in database: $e");
-    }
+  Future<int> add(String table, Map entry) async {
+      return await _database.insert(table, entry.cast());
   }
 
   // raw delete
   @override
-  Future<Response> remove(String table, int id) async {
-    try {
-      // final result = await _database.delete(table, where: 'id', whereArgs: [id]);
-      final result = await _database.transaction((t) async {
+  Future<int> remove(String table, int id) async {
+      return await _database.transaction((t) async {
         return await t.rawDelete('DELETE FROM $table WHERE id = $id');
       });
-      return Response.onSuccess([result]);
-    } catch (e) {
-      return Response.onError("Error inserting entry in database: $e");
-    }
   }
 
   // return all favorite entities for a given table
   @override
-  Future<Response> show(String table) async {
-    try {
-      final result = await _database.query(table);
-      return Response.onSuccess(result);
-    } catch (e) {
-      return Response.onError("Error inserting entry in database: $e");
-    }
+  Future<List<Map>> fetch(String table) async {
+      return await _database.query(table);
   }
 }

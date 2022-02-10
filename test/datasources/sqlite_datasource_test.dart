@@ -57,8 +57,7 @@ void main() async {
   test("Should return character id 0 when insert a character", () async {
     final character = CharacterEntity.fromMap(people[0]);
     final res = await cache.add(character.toString(), character.toMap());
-    expect(res.error, false);
-    expect(res.result[0], 1);
+    expect(res, 1);
   });
 
   test("Should return maps of all 3 favorites characters", () async {
@@ -66,7 +65,7 @@ void main() async {
     final character2 = CharacterEntity.fromMap(people[2]);
     await cache.add(character1.toString(), character1.toMap());
     await cache.add(character2.toString(), character2.toMap());
-    final res = await cache.show('characters');
+    final res = await cache.fetch('characters');
 
     const expected = [
       {'id': 1, 'name': 'Luke Skywalker', 'url': 'https://swapi.dev/api/people/1/'},
@@ -74,31 +73,27 @@ void main() async {
       {'id': 3, 'name': 'R2-D2', 'url': 'https://swapi.dev/api/people/3/'}
     ];
 
-    expect(res.error, false);
-    expect(res.result, expected);
+    expect(res, expected);
   });
 
   test("Should remove just one character from favorites",
       () async {
     final character = CharacterEntity.fromMap(people[1]);
-    final removeRes = await cache.remove(character.toString(), character.id);
-    final showRes = await cache.show('characters');
+    await cache.remove(character.toString(), character.id);
+    final showRes = await cache.fetch('characters');
 
     const expected = [
       {'id': 1, 'name': 'Luke Skywalker', 'url': 'https://swapi.dev/api/people/1/'},
       {'id': 3, 'name': 'R2-D2', 'url': 'https://swapi.dev/api/people/3/'}
     ];
 
-    expect(removeRes.error, false);
-    expect(showRes.result, expected);
+    expect(showRes, expected);
   });
 
   test("Should return 1 when remove a character from favorites with success",
       () async {
     final character = CharacterEntity.fromMap(people[2]);
     final removeRes = await cache.remove(character.toString(), character.id);
-    expect(removeRes.error, false);
-    expect(removeRes.result, [1]);
+    expect(removeRes, 1);
   });
-
 }
