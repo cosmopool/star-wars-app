@@ -10,56 +10,62 @@ void main() {
     expect(character.name, "Luke Skywalker");
   });
 
-  test("Should return luke homeworld as string", () {
+  test("Should return id of a luke as 1", () {
     final people = peopleResponse["results"];
     final character = CharacterEntity.fromMap(people[0]);
-
-    expect(character.homeworld.runtimeType, String);
+    expect(character.id, 1);
   });
 
-  test("Should return luke homeworld as empty instead of url on instantiation from json", () {
-    final people = peopleResponse["results"];
-    final character = CharacterEntity.fromMap(people[0]);
+  // test("Should return luke homeworld as string", () {
+  //   final people = peopleResponse["results"];
+  //   final character = CharacterEntity.fromMap(people[0]);
 
-    expect(character.homeworld, "");
-  });
+  //   expect(character.homeworld.runtimeType, String);
+  // });
 
-  test("Should return luke correct homeworld name when setHomeworld", () {
-    final people = peopleResponse["results"];
-    final character = CharacterEntity.fromMap(people[0]);
-    character.setHomeworld("Tatooine");
+  // test("Should return luke homeworld as empty instead of url on instantiation from json", () {
+  //   final people = peopleResponse["results"];
+  //   final character = CharacterEntity.fromMap(people[0]);
 
-    expect(character.homeworld, "Tatooine");
-  });
+  //   expect(character.homeworld, "");
+  // });
 
-  test("Should not be able to set homeworld name twice", () {
-    final people = peopleResponse["results"];
-    final character = CharacterEntity.fromMap(people[0]);
-    character.setHomeworld("Tatooine");
-    final wasAbleToSet = character.setHomeworld("Tatooine");
+  // test("Should return luke correct homeworld name when setHomeworld", () {
+  //   final people = peopleResponse["results"];
+  //   final character = CharacterEntity.fromMap(people[0]);
+  //   character.setHomeworld("Tatooine");
 
-    expect(wasAbleToSet, false);
-  });
+  //   expect(character.homeworld, "Tatooine");
+  // });
 
-  test("Should return luke species as n/a", () {
-    final people = peopleResponse["results"];
-    final character = CharacterEntity.fromMap(people[0]);
+  // test("Should not be able to set homeworld name twice", () {
+  //   final people = peopleResponse["results"];
+  //   final character = CharacterEntity.fromMap(people[0]);
+  //   character.setHomeworld("Tatooine");
+  //   final wasAbleToSet = character.setHomeworld("Tatooine");
 
-    expect(character.species[0], "n/a");
-  });
+  //   expect(wasAbleToSet, false);
+  // });
 
-  test("Should return r2d2 hair color as n/a", () {
-    final people = peopleResponse["results"];
-    final character = CharacterEntity.fromMap(people[0]);
+  // test("Should return luke species as n/a", () {
+  //   final people = peopleResponse["results"];
+  //   final character = CharacterEntity.fromMap(people[0]);
 
-    expect(character.hairColor, "n/a");
-  });
+  //   expect(character.species[0], "n/a");
+  // });
 
-  test("Should return r2d2 height as double", () {
-    final people = peopleResponse["results"];
-    final character = CharacterEntity.fromMap(people[0]);
+  // test("Should return r2d2 hair color as n/a", () {
+  //   final people = peopleResponse["results"];
+  //   final character = CharacterEntity.fromMap(people[0]);
 
-    expect(character.height.runtimeType, double);
-  });
+  //   expect(character.hairColor, "n/a");
+  // });
+
+  // test("Should return r2d2 height as double", () {
+  //   final people = peopleResponse["results"];
+  //   final character = CharacterEntity.fromMap(people[0]);
+
+  //   expect(character.height.runtimeType, double);
+  // });
 }
 
