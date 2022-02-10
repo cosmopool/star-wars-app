@@ -7,7 +7,7 @@ void main() {
   test("Should return a object with a new hope title", () {
     final films = filmResponse["results"];
     final film = FilmEntity.fromMap(films[0]);
-    expect(film.title, "A New Hope");
+    expect(film.name, "A New Hope");
   });
 
   test("Should return id of a new hope as 1", () {

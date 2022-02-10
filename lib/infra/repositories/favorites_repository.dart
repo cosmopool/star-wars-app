@@ -10,9 +10,9 @@ class FavoritesRepository implements IFavoritesRespository {
 
   @override
   Future<ResponseEntity> add(Entity entity) async {
-    final entityToMap = entity.toMap();
     final table = entity.toString();
     try {
+    Map entityToMap = {'name': entity.name, 'id': entity.id, 'url': entity.url};
     final response = await _cache.add(table, entityToMap);
       return ResponseEntity.onSuccess([response]);
     } catch(e) {

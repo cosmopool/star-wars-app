@@ -50,8 +50,8 @@ void main() async {
     final res = await repository.fetch(_film.toString());
 
     const expected = [
-      {'id': 1, 'title': 'A New Hope', 'url': 'https://swapi.dev/api/films/1/'},
-      {'id': 2, 'title': 'The Empire Strikes Back', 'url': 'https://swapi.dev/api/films/2/'}
+      {'id': 1, 'name': 'A New Hope', 'url': 'https://swapi.dev/api/films/1/'},
+      {'id': 2, 'name': 'The Empire Strikes Back', 'url': 'https://swapi.dev/api/films/2/'}
     ];
 
     expect(res.result, expected);

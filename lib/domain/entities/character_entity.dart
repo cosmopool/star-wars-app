@@ -1,32 +1,48 @@
 import 'entity.dart';
 
 class CharacterEntity implements Entity {
-  late final String name;
-  late final String url;
-  late final int id;
+  late final String _name;
+  late final String _url;
+  late final int _id;
+  late final bool _favorite;
 
   CharacterEntity(
-    this.name,
-    this.url,
-    this.id,
+    this._name,
+    this._url,
+    this._id,
+    this._favorite,
   );
 
   CharacterEntity.fromMap(Map character) {
-    name = character['name'] as String;
-    url = character['url'] as String;
-    final _urlToList = url.split('/');
-    id = int.parse(_urlToList[_urlToList.length - 2]);
+    _name = character['name'] as String;
+    _url = character['url'] as String;
+    final _urlToList = _url.split('/');
+    _id = int.parse(_urlToList[_urlToList.length - 2]);
+    (character['favorite'] != null) ? _favorite = character['favorite'] : _favorite = false;
   }
 
   @override
   Map<String, dynamic> toMap() {
     return {
-      'name': name,
-      'url': url,
-      'id' : id,
+      'name': _name,
+      'url': _url,
+      'id' : _id,
+      'favorite': _favorite
     };
   }
 
   @override
   String toString() => 'characters';
+
+  @override
+  String get name => _name;
+
+  @override
+  String get url => _url;
+
+  @override
+  int get id => _id;
+
+  @override
+  bool get favorite => _favorite;
 }

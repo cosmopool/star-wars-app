@@ -6,8 +6,8 @@ class AddFavoriteCharacterUsecase {
 
   AddFavoriteCharacterUsecase(this._respository);
 
-  bool call(CharacterEntity character) {
-    final result = _respository.add(character);
-    return result;
+  Future<bool> call(CharacterEntity character) async {
+    final result = await _respository.add(character);
+    return !result.error;
   }
 }
