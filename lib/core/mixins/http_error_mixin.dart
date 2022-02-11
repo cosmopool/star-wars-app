@@ -1,9 +1,10 @@
 import 'dart:io';
 
 import 'package:star_wars_app/core/domain/entities/response.dart';
+import 'package:star_wars_app/domain/entities/entity.dart';
 
 mixin HttpResponseErrorMenager {
-  Future<Response> manageHttpResponse(dynamic tryFunction) async {
+  Future<Response<Entity>> manageHttpResponse(dynamic tryFunction) async {
     try {
       final result = await tryFunction();
       return Response.onSuccess(result);
