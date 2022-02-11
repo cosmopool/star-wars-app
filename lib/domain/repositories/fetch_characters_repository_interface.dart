@@ -1,5 +1,6 @@
-import 'package:star_wars_app/domain/entities/response_entity.dart';
+import 'package:star_wars_app/core/domain/entities/response.dart';
+import 'package:star_wars_app/domain/entities/character_entity.dart';
 
 abstract class IFetchCharactersRespository {
-  Future<ResponseEntity> call();
+  Future<Response<CharacterEntity>> call();
 }

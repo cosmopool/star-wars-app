@@ -18,8 +18,14 @@ class SqliteDatabaseManager {
     final map = entity.toMap();
     final nameColumn = (map['title'] != null) ? 'title' : 'name';
 
+    // final result = await db.execute('''
+    //   CREATE TABLE ${entity.toString()} ( 
+    //   id integer primary key, 
+    //   $nameColumn text not null,
+    //   url text not null)
+    // ''');
     final result = await db.execute('''
-      CREATE TABLE ${entity.toString()} ( 
+      CREATE TABLE favorites ( 
       id integer primary key, 
       $nameColumn text not null,
       url text not null)

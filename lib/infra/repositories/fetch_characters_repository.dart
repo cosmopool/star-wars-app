@@ -1,7 +1,9 @@
+import 'dart:io';
+
+import 'package:star_wars_app/core/domain/entities/response.dart';
 import 'package:star_wars_app/core/enums.dart';
 import 'package:star_wars_app/core/mixins/http_error_mixin.dart';
 import 'package:star_wars_app/domain/entities/character_entity.dart';
-import 'package:star_wars_app/domain/entities/response_entity.dart';
 import 'package:star_wars_app/domain/repositories/fetch_characters_repository_interface.dart';
 import 'package:star_wars_app/infra/datasources/api_datasource_interface.dart';
 import 'package:star_wars_app/infra/datasources/cache_datasource_interface.dart';
@@ -44,7 +46,18 @@ class FetchCharactersRepository with HttpResponseErrorMenager implements IFetchC
   }
 
   @override
-  Future<ResponseEntity> call() async {
-    return await manageHttpResponse(fetchDataFromApi);
+  Future<Response<CharacterEntity>> call() async {
+    try {
+      final result = await fetchDataFromApi();
+      return Response.onSuccess(result);
+    } on SocketException {
+      return Response.onError("No Internet connection 😑");
+    } on HttpException {
+      return Response.onError("Couldn't find the resource 😱");
+    } on FormatException {
+      return Response.onError("Bad response format 👎");
+    } catch (e) {
+      return Response.onError("Bad response 👎: $e");
+    }
   }
 }

@@ -1,20 +1,20 @@
 import 'dart:io';
 
-import 'package:star_wars_app/domain/entities/response_entity.dart';
+import 'package:star_wars_app/core/domain/entities/response.dart';
 
 mixin HttpResponseErrorMenager {
-  Future<ResponseEntity> manageHttpResponse(dynamic tryFunction) async {
+  Future<Response> manageHttpResponse(dynamic tryFunction) async {
     try {
       final result = await tryFunction();
-      return ResponseEntity.onSuccess(result);
+      return Response.onSuccess(result);
     } on SocketException {
-      return ResponseEntity.onError("No Internet connection 😑");
+      return Response.onError("No Internet connection 😑");
     } on HttpException {
-      return ResponseEntity.onError("Couldn't find the resource 😱");
+      return Response.onError("Couldn't find the resource 😱");
     } on FormatException {
-      return ResponseEntity.onError("Bad response format 👎");
+      return Response.onError("Bad response format 👎");
     } catch (e) {
-      return ResponseEntity.onError("Bad response 👎: $e");
+      return Response.onError("Bad response 👎: $e");
     }
   }
 }

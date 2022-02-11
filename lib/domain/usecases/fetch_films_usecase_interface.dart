@@ -1,13 +1,17 @@
-import 'package:star_wars_app/domain/entities/entity.dart';
-import 'package:star_wars_app/domain/repositories/fetch_entities_repository_interface.dart';
+import 'package:star_wars_app/domain/repositories/fetch_films_repository_interface.dart';
 
-class FetchFilmsUsecase {
-  final IFetchEntityRespository _respository;
+abstract class IFetchFilmsUsecase {
+  Future<List> call();
+}
+
+class FetchFilmsUsecase implements IFetchFilmsUsecase {
+  final IFetchFilmsRespository _respository;
 
   FetchFilmsUsecase(this._respository);
 
-  List<Entity> call() {
-    final result = _respository(); 
-    return result;
+  @override
+  Future<List> call() async {
+    final response = await _respository(); 
+    return response.result;
   }
 }
