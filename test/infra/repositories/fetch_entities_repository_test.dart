@@ -40,7 +40,6 @@ void main() async {
 
   test("Should return all characters on fetch", () async {
     final response = await repository(Endpoint.characters);
-    // print('================================ errmsg: ${response.errMessage}');
     expect(response.result.length, peopleResponse['results'].length);
   });
 
@@ -67,9 +66,6 @@ void main() async {
     final favoritesResp = await favoriteRepository.fetch();
 
     final response = await repository(Endpoint.films);
-    print('================================ res1: ${addFavoriteRes.result}');
-    print('================================ res: ${response.result[0].name}');
-    expect(favoritesResp.result[0].url, film.url);
     expect(response.result[0].name, film.name);
     expect(response.result[0].isFavorite, true);
   });
@@ -81,7 +77,6 @@ void main() async {
 
   test("Should return a new hope as first character", () async {
     final response = await repository(Endpoint.films);
-    // print(response.result);
     expect(response.result[0].name, "A New Hope");
   });
 
@@ -114,7 +109,6 @@ void main() async {
     final repository = FetchEntitiesRepository(_datasource, cache);
     final response = await repository(Endpoint.films);
     expect(response.error, true);
-    // print('=========================================================== err: ${response.errMessage}');
     expect(response.errMessage, "Bad response 👎: Exception: Other exception");
   });
 }

@@ -36,7 +36,6 @@ void main() async {
 
   test("Should return error = false when insert a film successfuly", () async {
     final res = await repository.add(film);
-    // print('================================ errmsg: ${res.errMessage}');
     expect(res.error, false);
   });
 

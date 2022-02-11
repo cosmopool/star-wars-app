@@ -8,12 +8,9 @@ import 'package:star_wars_app/infra/datasources/api_datasource_interface.dart';
 class ApiDatasource implements IApiDatasource {
   @override
   Future<Map> call(Endpoint endpoint) async {
-    print('======================================= endpoint3: $endpoint');
     final endpointToString = convertEndpoint(endpoint);
-    final url = Uri.https(endpointToString, '');
-    print('======================================= url: $url');
+    final url = Uri.parse(endpointToString);
     final response = await http.get(url);
-    print('======================================= response: $response');
 
     return jsonDecode(response.body);
   }

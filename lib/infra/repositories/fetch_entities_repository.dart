@@ -19,7 +19,7 @@ class FetchEntitiesRepository with HttpResponseErrorMenager implements IFetchEnt
     bool res = false;
 
     for(var favorite in favoriteList) {
-      (favorite['url'] == entity['url']) ? res = true : res = false;
+      if (favorite['url'] == entity['url']) return true;
     }
 
     return res;

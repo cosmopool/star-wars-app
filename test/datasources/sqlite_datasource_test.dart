@@ -37,9 +37,7 @@ final cache = SqliteDatasource(db);
 
   test("Should return true insert a character with success", () async {
     final character = Entity.fromMap(people[0]);
-    // print('=================================== char: ${character.toMap()}');
     final res = await cache.add('favorites', {'name': character.name, 'url': character.url, 'id': character.id});
-    // final res = await cache.add('favorites', character.toMap());
     expect(res, true);
   });
 

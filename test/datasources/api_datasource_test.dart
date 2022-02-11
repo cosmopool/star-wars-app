@@ -3,11 +3,21 @@ import 'package:star_wars_app/core/enums.dart';
 import 'package:star_wars_app/core/utils.dart';
 import 'package:star_wars_app/data/datasource/remote/api_datasource.dart';
 
-void main() async {
+import '../films_response.dart';
+import '../people_response.dart';
 
+void main() async {
   final api = ApiDatasource();
 
-    // print('================================ errmsg: ${response.errMessage}');
+  test("Should return all films", () async {
+    final response = await api(Endpoint.films);
+    expect(response, filmResponse);
+  });
+
+  test("Should return all characters", () async {
+    final response = await api(Endpoint.characters);
+    expect(response, peopleResponse);
+  });
 
   test("Should return a url to fetch films", () async {
     final url = convertEndpoint(Endpoint.films);
