@@ -6,17 +6,10 @@ import 'package:star_wars_app/infra/datasources/api_datasource_interface.dart';
 import '../films_response.dart';
 import '../people_response.dart';
 
-class ApiCharactersDatasourceTestStub implements IApiDatasource {
+class ApiDatasourceTestStub implements IApiDatasource {
   @override
   Future<Map> call(Endpoint endpoint) async {
-    return peopleResponse;
-  }
-}
-
-class ApiFilmsDatasourceTestStub implements IApiDatasource {
-  @override
-  Future<Map> call(Endpoint endpoint) async {
-    return filmResponse;
+    return (endpoint == Endpoint.films) ? filmResponse : peopleResponse;
   }
 }
 

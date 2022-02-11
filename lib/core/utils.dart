@@ -2,18 +2,18 @@ import 'package:star_wars_app/core/enums.dart';
 
 const _baseUrl = "https://swapi.dev/api";
 
-parseEndpoint(Endpoint endpoint) {
+String convertEndpoint(Endpoint endpoint) {
   late final String string;
 
   switch (endpoint) {
     case Endpoint.films: { string = "$_baseUrl/films"; } break;
-    case Endpoint.characters: { string = "$_baseUrl/characters"; } break;
+    case Endpoint.characters: { string = "$_baseUrl/people"; } break;
   }
 
   return string;
 }
 
 
-parseEndpointWithId(Endpoint endpoint, int id) {
-  return parseEndpoint(endpoint) + id.toString();
+String convertEndpointWithId(Endpoint endpoint, int id) {
+  return convertEndpoint(endpoint) + '/' + id.toString();
 }

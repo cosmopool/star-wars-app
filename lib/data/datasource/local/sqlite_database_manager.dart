@@ -1,6 +1,5 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:star_wars_app/domain/entities/entity.dart';
 
 /// class to initialize and create databases
 class SqliteDatabaseManager {
@@ -14,22 +13,23 @@ class SqliteDatabaseManager {
     return await openDatabase(databaseName);
   }
 
-  static Future createEntityTable(Database db, Entity entity) async {
-    final map = entity.toMap();
-    final nameColumn = (map['title'] != null) ? 'title' : 'name';
-
-    // final result = await db.execute('''
-    //   CREATE TABLE ${entity.toString()} ( 
-    //   id integer primary key, 
-    //   $nameColumn text not null,
-    //   url text not null)
-    // ''');
+  static Future createEntityTable(Database db) async {
     final result = await db.execute('''
       CREATE TABLE favorites ( 
       id integer primary key, 
-      $nameColumn text not null,
+      name text not null,
       url text not null)
     ''');
     return result;
   }
+
+  // static Future createAvatarTable(Database db) async {
+  //   final result = await db.execute('''
+  //     CREATE TABLE avatar ( 
+  //     id integer primary key, 
+  //     name text not null,
+  //     url text not null)
+  //   ''');
+  //   return result;
+  // }
 }

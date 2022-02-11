@@ -7,16 +7,17 @@ class SqliteDatasource implements ICacheDatasource {
   SqliteDatasource(this._database);
 
   @override
-  Future<int> add(String table, Map entry) async {
-    entry.remove('favorite');
-    return await _database.insert(table, entry.cast());
+  Future<bool> add(String table, Map entry) async {
+    final res = await _database.insert(table, entry.cast());
+    return (res == 0) ? false : true;
   }
 
   // raw delete
   @override
-  Future<int> remove(String table, int id) async {
+  Future<bool> remove(String table, int id) async {
     return await _database.transaction((t) async {
-      return await t.rawDelete('DELETE FROM $table WHERE id = $id');
+      final res = await t.rawDelete('DELETE FROM $table WHERE id = $id');
+      return (res == 0) ? false : true;
     });
   }
 
