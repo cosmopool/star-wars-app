@@ -1,5 +1,5 @@
 # star_wars_app
 
-Esse projeto tem 2 branches, nao consegui terminar a tempo e estou
-mandando no MASTER branch o projeto incompleto. O projeto em progresso
-esta na branch IN-PROGRESS.
+Esse projeto tem mais de 1 branch. Por não conseguir terminar a tempo, estou
+mandando no branch UNCOMPLETED o projeto incompleto que foi mandado até as 23:59h.
+O projeto na MASTER branch é o que está em progresso.
